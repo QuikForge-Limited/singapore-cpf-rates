@@ -1,0 +1,29 @@
+year,scheme,scheme_label,pr_year,age_band,age_band_label,employee_pct_of_wage,employer_pct_of_wage,total_pct_of_wage
+2026,gg_year1,Graduated employee / graduated employer,1,le55,55 & below,5,4,9
+2026,gg_year1,Graduated employee / graduated employer,1,55_60,Above 55 to 60,5,4,9
+2026,gg_year1,Graduated employee / graduated employer,1,60_65,Above 60 to 65,5,3.5,8.5
+2026,gg_year1,Graduated employee / graduated employer,1,65_plus,Above 65,5,3.5,8.5
+2026,gg_year2,Graduated employee / graduated employer,2,le55,55 & below,15,9,24
+2026,gg_year2,Graduated employee / graduated employer,2,55_60,Above 55 to 60,12.5,6,18.5
+2026,gg_year2,Graduated employee / graduated employer,2,60_65,Above 60 to 65,7.5,3.5,11
+2026,gg_year2,Graduated employee / graduated employer,2,65_plus,Above 65,5,3.5,8.5
+2026,fg_year1,Full employee / graduated employer,1,le55,55 & below,5,17,22
+2026,fg_year1,Full employee / graduated employer,1,55_60,Above 55 to 60,5,16,21
+2026,fg_year1,Full employee / graduated employer,1,60_65,Above 60 to 65,5,12.5,17.5
+2026,fg_year2,Full employee / graduated employer,2,le55,55 & below,15,17,32
+2026,fg_year2,Full employee / graduated employer,2,55_60,Above 55 to 60,12.5,16,28.5
+2026,fg_year2,Full employee / graduated employer,2,60_65,Above 60 to 65,7.5,12.5,20
+2027,gg_year1,Graduated employee / graduated employer,1,le55,55 & below,5,4,9
+2027,gg_year1,Graduated employee / graduated employer,1,55_60,Above 55 to 60,5,4,9
+2027,gg_year1,Graduated employee / graduated employer,1,60_65,Above 60 to 65,5,3.5,8.5
+2027,gg_year1,Graduated employee / graduated employer,1,65_plus,Above 65,5,3.5,8.5
+2027,gg_year2,Graduated employee / graduated employer,2,le55,55 & below,15,9,24
+2027,gg_year2,Graduated employee / graduated employer,2,55_60,Above 55 to 60,12.5,6,18.5
+2027,gg_year2,Graduated employee / graduated employer,2,60_65,Above 60 to 65,7.5,3.5,11
+2027,gg_year2,Graduated employee / graduated employer,2,65_plus,Above 65,5,3.5,8.5
+2027,fg_year1,Full employee / graduated employer,1,le55,55 & below,5,17,22
+2027,fg_year1,Full employee / graduated employer,1,55_60,Above 55 to 60,5,16.5,21.5
+2027,fg_year1,Full employee / graduated employer,1,60_65,Above 60 to 65,5,13,18
+2027,fg_year2,Full employee / graduated employer,2,le55,55 & below,15,17,32
+2027,fg_year2,Full employee / graduated employer,2,55_60,Above 55 to 60,12.5,16.5,29
+2027,fg_year2,Full employee / graduated employer,2,60_65,Above 60 to 65,7.5,13,20.5

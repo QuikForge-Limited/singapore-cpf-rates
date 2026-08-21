@@ -1,0 +1,11 @@
+year,age_band,age_band_label,total_pct_wage_50_to_500,taper_factor_total,taper_factor_employee
+2026,le55,55 & below,17,0.6,0.6
+2026,55_60,Above 55 to 60,16,0.54,0.54
+2026,60_65,Above 60 to 65,12.5,0.375,0.375
+2026,65_70,Above 65 to 70,9,0.225,0.225
+2026,70_plus,Above 70,7.5,0.15,0.15
+2027,le55,55 & below,17,0.6,0.6
+2027,55_60,Above 55 to 60,16.5,0.57,0.57
+2027,60_65,Above 60 to 65,13,0.39,0.39
+2027,65_70,Above 65 to 70,9,0.225,0.225
+2027,70_plus,Above 70,7.5,0.15,0.15

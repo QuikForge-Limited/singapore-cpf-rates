@@ -1,0 +1,11 @@
+year,age_band,age_band_label,max_total_monthly_sgd,max_employee_monthly_sgd,max_employer_monthly_sgd
+2026,le55,55 & below,2960,1600,1360
+2026,55_60,Above 55 to 60,2720,1440,1280
+2026,60_65,Above 60 to 65,2000,1000,1000
+2026,65_70,Above 65 to 70,1320,600,720
+2026,70_plus,Above 70,1000,400,600
+2027,le55,55 & below,2960,1600,1360
+2027,55_60,Above 55 to 60,2840,1520,1320
+2027,60_65,Above 60 to 65,2080,1040,1040
+2027,65_70,Above 65 to 70,1320,600,720
+2027,70_plus,Above 70,1000,400,600

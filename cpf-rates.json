@@ -1,0 +1,492 @@
+{
+  "_README": "SINGLE SOURCE OF TRUTH for every CPF rate published on cpfcalculatorsg.com. Never edit a rate directly in site/*.html — edit it here and run `python3 build/render.py`. Every figure below is transcribed from a CPF Board primary source listed in `sources`; see build/verify.py for the reconciliation checks. Percentages are of wages. Allocation ratios are ratios of the total contribution, exactly as CPF Board publishes them.",
+
+  "sources": {
+    "iras_income_tax_rates": {
+      "title": "IRAS | Individual Income Tax Rates \u2014 resident rates, from YA 2024 onwards",
+      "url": "https://www.iras.gov.sg/taxes/individual-income-tax/basics-of-individual-income-tax/tax-residency-and-tax-rates/individual-income-tax-rates",
+      "retrieved": "2026-08-20"
+    },
+    "iras_cpf_cash_topup_relief": {
+      "title": "IRAS | Central Provident Fund (CPF) Cash Top-up Relief",
+      "url": "https://www.iras.gov.sg/taxes/individual-income-tax/basics-of-individual-income-tax/tax-reliefs-rebates-and-deductions/tax-reliefs/central-provident-fund-(cpf)-cash-top-up-relief",
+      "retrieved": "2026-08-20"
+    },
+    "iras_srs_contributions": {
+      "title": "IRAS | SRS contributions and tax relief",
+      "url": "https://www.iras.gov.sg/taxes/individual-income-tax/basics-of-individual-income-tax/special-tax-schemes/srs-contributions",
+      "retrieved": "2026-08-20"
+    },
+    "iras_srs_withdrawals": {
+      "title": "IRAS | Tax on SRS withdrawals",
+      "url": "https://www.iras.gov.sg/taxes/individual-income-tax/basics-of-individual-income-tax/special-tax-schemes/tax-on-srs-withdrawals",
+      "retrieved": "2026-08-20"
+    },
+    "rates_2025": {
+      "title": "CPF Contribution Rate Table from 1 January to 31 December 2025 (Tables 1-5) and CPF Allocation Rates 2025 (Table 6)",
+      "url": "https://www.cpf.gov.sg/content/dam/web/employer/employer-obligations/documents/jan2025_contributionandallocationrates.pdf",
+      "local": "/mnt/c/AI_Wiki/Sites/sg-cpf-calculator/raw/jan2025_contributionandallocationrates.pdf",
+      "retrieved": "2026-08-20"
+    },
+    "rates_2026": {
+      "title": "CPF Contribution Rate Table from 1 January 2026 (Tables 1-5)",
+      "url": "https://www.cpf.gov.sg/content/dam/web/employer/employer-obligations/documents/CPFcontributionratesfrom1Jan2026.pdf",
+      "local": "/mnt/c/AI_Wiki/Sites/sg-cpf-calculator/raw/CPFcontributionratesfrom1Jan2026.pdf",
+      "retrieved": "2026-08-20"
+    },
+    "allocation_2026": {
+      "title": "CPF Allocation Rates from 1 January 2026",
+      "url": "https://www.cpf.gov.sg/content/dam/web/employer/employer-obligations/documents/CPFAllocationRatesfromJanuary2026.pdf",
+      "retrieved": "2026-08-20"
+    },
+    "rates_2027": {
+      "title": "CPF Contribution Rate Table from 1 January 2027 (Tables 1-5)",
+      "url": "https://www.cpf.gov.sg/content/dam/web/employer/employer-obligations/documents/jan2027cpfcontributionrates.pdf",
+      "local": "/mnt/c/AI_Wiki/Sites/sg-cpf-calculator/raw/jan2027cpfcontributionrates.pdf",
+      "retrieved": "2026-08-20"
+    },
+    "allocation_2027": {
+      "title": "CPF Allocation Rates from 1 January 2027",
+      "url": "https://www.cpf.gov.sg/content/dam/web/employer/employer-obligations/documents/jan2027cpfallocationrates.pdf",
+      "local": "/mnt/c/AI_Wiki/Sites/sg-cpf-calculator/raw/jan2027cpfallocationrates.pdf",
+      "retrieved": "2026-08-20"
+    },
+    "announcement_2027": {
+      "title": "CPF Contribution Changes from 1 January 2027",
+      "url": "https://www.cpf.gov.sg/employer/infohub/news/cpf-related-announcements/new-contribution-rates",
+      "retrieved": "2026-08-20"
+    },
+    "retirement_sums": {
+      "title": "What is the CPF retirement sum?",
+      "url": "https://www.cpf.gov.sg/member/infohub/educational-resources/what-is-the-cpf-retirement-sum",
+      "retrieved": "2026-08-20"
+    },
+    "bhs_2026": {
+      "title": "CPF interest rates from 1 January to 31 March 2026 and Basic Healthcare Sum for 2026",
+      "url": "https://www.cpf.gov.sg/member/infohub/news/news-releases/cpf-interest-rates-from-1-january-to-31-march-2026-and-basic-healthcare-sum-for-2026",
+      "retrieved": "2026-08-20"
+    },
+    "sep_medisave_2026": {
+      "title": "MediSave Contribution Rates for Self-Employed Persons, applicable for 2026 (Table 1 non-pensioners, Table 2 pensioners)",
+      "url": "https://www.cpf.gov.sg/service/sfc/servlet.shepherd/document/download/069IW00000G4S1QYAV",
+      "local": "/mnt/c/AI_Wiki/Sites/sg-cpf-calculator/raw/sep_medisave_rates_2026.pdf",
+      "retrieved": "2026-08-20",
+      "note": "CPF Board's own Self-Employed Scheme rate table, served from cpf.gov.sg. The member FAQ article that linked it now redirects to page-not-found and the SEP MediSave calculator is terms-gated, so this document is the citable primary source."
+    },
+    "retirement_sums_brs_history": {
+      "title": "CPFB | How much is my Basic Retirement Sum? \u2014 BRS by year of 55th birthday",
+      "url": "https://www.cpf.gov.sg/service/article/how-much-is-my-basic-retirement-sum",
+      "retrieved": "2026-08-20",
+      "note": "CPF Board publishes the BRS for every cohort and states 'your Full Retirement Sum is double your BRS'. Only the BRS column below is transcribed; FRS and ERS are derived in cpfdata.py from CPF's own rules, so a slip in one derived figure is not expressible. Cross-checked against CPF Board's Retirement Sums PDF (2017-2022) and the current retirement-sum page (2025-2027)."
+    },
+    "frs_minimum_sum_series": {
+      "title": "CPFB | Full Retirement Sum by 55th birthday, 1 July 1995 to 1 January 2027",
+      "url": "https://www.cpf.gov.sg/service/sfc/servlet.shepherd/version/download/068IW000002bHNJYA2",
+      "retrieved": "2026-08-20",
+      "note": "CPF Board's own document. It lists the pre-2016 Minimum Sum and the post-2016 Full Retirement Sum in ONE continuous column headed 'Full Retirement Sum' — which is the primary evidence that they are the same series under two names. It also shows the revision date moving from 1 July to 1 January: the 1 July 2015 cohort is followed directly by 1 January 2017. Transcribed independently of retirement_sums_brs_history, so the eleven overlapping years are a cross-check."
+    },
+    "medisave_changes_2016": {
+      "title": "MOH / CPF | Changes to the Medisave Scheme (factsheet, CPF Advisory Panel recommendations)",
+      "url": "https://www.cpf.gov.sg/content/dam/web/member/infohub/documents/FactsheetonChangestotheMedisaveScheme.pdf",
+      "retrieved": "2026-08-20",
+      "note": "The primary source for the OTHER 'minimum sum'. Two different things happened on 1 January 2016 and they are routinely conflated: the Medisave Minimum Sum was REMOVED outright ('we will remove the Medisave Minimum Sum (MMS) from 1 January 2016'), while it was the Medisave Contribution CEILING that was renamed the Basic Healthcare Sum ('the Medisave Contribution Ceiling (MCC) will be renamed as the Basic Healthcare Sum (BHS)'). Saying the MMS became the BHS is wrong."
+    },
+    "ers_rule": {
+      "title": "CPFB | What is the Enhanced Retirement Sum (ERS)?",
+      "url": "https://www.cpf.gov.sg/service/article/what-is-the-enhanced-retirement-sum-ers",
+      "retrieved": "2026-08-20",
+      "note": "Quote: 'The ERS amount is not dependent on your age or the year you turn 55 years old. It increases yearly on 1 January.' and 'the ERS amount is double the current year's Full Retirement Sum (FRS)'. The ERS is therefore NOT a cohort attribute the way BRS and FRS are \u2014 it is the top-up ceiling in force that calendar year for every member aged 55 and above. It was 3x the BRS through 2024 and became 4x (= 2x FRS) on 1 January 2025."
+    }
+  },
+
+  "allocation_band_to_contribution_band": {
+    "le35": "le55",
+    "35_45": "le55",
+    "45_50": "le55",
+    "50_55": "le55",
+    "55_60": "55_60",
+    "60_65": "60_65",
+    "65_70": "65_70",
+    "70_plus": "70_plus"
+  },
+
+  "band_labels": {
+    "le55": "55 & below",
+    "55_60": "Above 55 to 60",
+    "60_65": "Above 60 to 65",
+    "65_70": "Above 65 to 70",
+    "70_plus": "Above 70",
+    "le35": "35 & below",
+    "35_45": "Above 35 to 45",
+    "45_50": "Above 45 to 50",
+    "50_55": "Above 50 to 55"
+  },
+
+  "years": {
+    "2025": {
+      "effective": "1 January 2025",
+      "source": "rates_2025",
+      "ow_ceiling": 7400,
+      "annual_ceiling": 102000,
+      "contribution": {
+        "le55":    { "employee": 20,   "employer": 17,   "total": 37 },
+        "55_60":   { "employee": 17,   "employer": 15.5, "total": 32.5 },
+        "60_65":   { "employee": 11.5, "employer": 12,   "total": 23.5 },
+        "65_70":   { "employee": 7.5,  "employer": 9,    "total": 16.5 },
+        "70_plus": { "employee": 5,    "employer": 7.5,  "total": 12.5 }
+      },
+      "allocation_ratios": {
+        "le35":    { "account": "SA", "oa": 0.6217, "sa_ra": 0.1621, "ma": 0.2162 },
+        "35_45":   { "account": "SA", "oa": 0.5677, "sa_ra": 0.1891, "ma": 0.2432 },
+        "45_50":   { "account": "SA", "oa": 0.5136, "sa_ra": 0.2162, "ma": 0.2702 },
+        "50_55":   { "account": "SA", "oa": 0.4055, "sa_ra": 0.3108, "ma": 0.2837 },
+        "55_60":   { "account": "RA", "oa": 0.3694, "sa_ra": 0.3076, "ma": 0.3230 },
+        "60_65":   { "account": "RA", "oa": 0.149,  "sa_ra": 0.4042, "ma": 0.4468 },
+        "65_70":   { "account": "RA", "oa": 0.0607, "sa_ra": 0.303,  "ma": 0.6363 },
+        "70_plus": { "account": "RA", "oa": 0.08,   "sa_ra": 0.08,   "ma": 0.84 }
+      }
+    },
+
+    "2026": {
+      "effective": "1 January 2026",
+      "source": "rates_2026",
+      "allocation_source": "allocation_2026",
+      "ow_ceiling": 8000,
+      "annual_ceiling": 102000,
+      "contribution": {
+        "le55":    { "employee": 20,   "employer": 17,   "total": 37 },
+        "55_60":   { "employee": 18,   "employer": 16,   "total": 34 },
+        "60_65":   { "employee": 12.5, "employer": 12.5, "total": 25 },
+        "65_70":   { "employee": 7.5,  "employer": 9,    "total": 16.5 },
+        "70_plus": { "employee": 5,    "employer": 7.5,  "total": 12.5 }
+      },
+      "partial_wage": {
+        "le55":    { "low_total": 17,   "taper_total": 0.6,   "taper_employee": 0.6 },
+        "55_60":   { "low_total": 16,   "taper_total": 0.54,  "taper_employee": 0.54 },
+        "60_65":   { "low_total": 12.5, "taper_total": 0.375, "taper_employee": 0.375 },
+        "65_70":   { "low_total": 9,    "taper_total": 0.225, "taper_employee": 0.225 },
+        "70_plus": { "low_total": 7.5,  "taper_total": 0.15,  "taper_employee": 0.15 }
+      },
+      "max_on_ow": {
+        "le55":    { "total": 2960, "employee": 1600 },
+        "55_60":   { "total": 2720, "employee": 1440 },
+        "60_65":   { "total": 2000, "employee": 1000 },
+        "65_70":   { "total": 1320, "employee": 600 },
+        "70_plus": { "total": 1000, "employee": 400 }
+      },
+      "allocation_ratios": {
+        "le35":    { "account": "SA", "oa": 0.6217, "sa_ra": 0.1621, "ma": 0.2162 },
+        "35_45":   { "account": "SA", "oa": 0.5677, "sa_ra": 0.1891, "ma": 0.2432 },
+        "45_50":   { "account": "SA", "oa": 0.5136, "sa_ra": 0.2162, "ma": 0.2702 },
+        "50_55":   { "account": "SA", "oa": 0.4055, "sa_ra": 0.3108, "ma": 0.2837 },
+        "55_60":   { "account": "RA", "oa": 0.353,  "sa_ra": 0.3382, "ma": 0.3088 },
+        "60_65":   { "account": "RA", "oa": 0.14,   "sa_ra": 0.44,   "ma": 0.42 },
+        "65_70":   { "account": "RA", "oa": 0.0607, "sa_ra": 0.303,  "ma": 0.6363 },
+        "70_plus": { "account": "RA", "oa": 0.08,   "sa_ra": 0.08,   "ma": 0.84 }
+      },
+      "pr_graduated": {
+        "gg_year1": {
+          "le55":    { "employee": 5, "employer": 4,   "total": 9 },
+          "55_60":   { "employee": 5, "employer": 4,   "total": 9 },
+          "60_65":   { "employee": 5, "employer": 3.5, "total": 8.5 },
+          "65_plus": { "employee": 5, "employer": 3.5, "total": 8.5 }
+        },
+        "gg_year2": {
+          "le55":    { "employee": 15,   "employer": 9,   "total": 24 },
+          "55_60":   { "employee": 12.5, "employer": 6,   "total": 18.5 },
+          "60_65":   { "employee": 7.5,  "employer": 3.5, "total": 11 },
+          "65_plus": { "employee": 5,    "employer": 3.5, "total": 8.5 }
+        },
+        "fg_year1": {
+          "le55":    { "employee": 5, "employer": 17,   "total": 22 },
+          "55_60":   { "employee": 5, "employer": 16,   "total": 21 },
+          "60_65":   { "employee": 5, "employer": 12.5, "total": 17.5 },
+          "65_70":   { "employee": 5, "employer": 9,    "total": 14 },
+          "70_plus": { "employee": 5, "employer": 7.5,  "total": 12.5 }
+        },
+        "fg_year2": {
+          "le55":    { "employee": 15,   "employer": 17,   "total": 32 },
+          "55_60":   { "employee": 12.5, "employer": 16,   "total": 28.5 },
+          "60_65":   { "employee": 7.5,  "employer": 12.5, "total": 20 },
+          "65_70":   { "employee": 5,    "employer": 9,    "total": 14 },
+          "70_plus": { "employee": 5,    "employer": 7.5,  "total": 12.5 }
+        }
+      },
+      "retirement_sums": {
+        "brs": { "amount": 110200, "payout": 950 },
+        "frs": { "amount": 220400, "payout": 1780 },
+        "ers": { "amount": 440800, "payout": 3440 },
+        "bhs": 79000,
+        "source": "retirement_sums",
+        "payout_basis": "CPF LIFE Standard Plan, 4% interest, payouts from age 65, for members turning 55 in 2026"
+      },
+      "interest": {
+        "oa": 2.5,
+        "sa": 4.0,
+        "ma": 4.0,
+        "ra": 4.0,
+        "extra_below_55": { "rate": 1, "on_first": 60000, "oa_cap": 20000 },
+        "extra_55_plus": { "rate_first": 2, "first": 30000, "rate_next": 1, "next": 30000, "oa_cap": 20000 }
+      },
+      "sep_medisave": {
+        "_note": "Self-Employed Scheme MediSave rates. Payable only where Net Trade Income exceeds $6,000; NTI excludes net earnings from platform work declared to CPF Board by a platform operator. Between $12,000 and $18,000 the rate is phased in with [phase_base + phase_slope x (NTI - 12000)] x 100 / NTI, which meets low_rate at $12,000 and full_rate at $18,000. CPF Board has published no 2027 table as at 2026-08-20.",
+        "source": "sep_medisave_2026",
+        "applicable_year": 2026,
+        "nti_threshold": 6000,
+        "low_band": { "from": 6000, "to": 12000 },
+        "phase_in_band": { "from": 12000, "to": 18000 },
+        "full_rate_from": 18000,
+        "age_measured_at": "Age as at 1 January",
+        "age_band_order": ["below_35", "35_45", "45_50", "50_plus"],
+        "age_band_labels": {
+          "below_35": "Below 35",
+          "35_45": "35 to below 45",
+          "45_50": "45 to below 50",
+          "50_plus": "50 and above"
+        },
+        "non_pensioners": {
+          "below_35": { "low_rate": 4,    "full_rate": 8,    "max_annual": 7680,  "phase_base": 480, "phase_slope": 0.16 },
+          "35_45":    { "low_rate": 4.5,  "full_rate": 9,    "max_annual": 8640,  "phase_base": 540, "phase_slope": 0.18 },
+          "45_50":    { "low_rate": 5,    "full_rate": 10,   "max_annual": 9600,  "phase_base": 600, "phase_slope": 0.2 },
+          "50_plus":  { "low_rate": 5.25, "full_rate": 10.5, "max_annual": 10080, "phase_base": 630, "phase_slope": 0.21 }
+        },
+        "pensioners": {
+          "below_35": { "low_rate": 4,    "full_rate": 6, "max_annual": 5760, "phase_base": 480, "phase_slope": 0.1 },
+          "35_45":    { "low_rate": 4.5,  "full_rate": 6, "max_annual": 5760, "phase_base": 540, "phase_slope": 0.09 },
+          "45_50":    { "low_rate": 5,    "full_rate": 6, "max_annual": 5760, "phase_base": 600, "phase_slope": 0.08 },
+          "50_plus":  { "low_rate": 5.25, "full_rate": 6, "max_annual": 5760, "phase_base": 630, "phase_slope": 0.075 }
+        }
+      }
+    },
+
+    "2027": {
+      "effective": "1 January 2027",
+      "source": "rates_2027",
+      "allocation_source": "allocation_2027",
+      "ow_ceiling": 8000,
+      "annual_ceiling": 102000,
+      "contribution": {
+        "le55":    { "employee": 20, "employer": 17,   "total": 37 },
+        "55_60":   { "employee": 19, "employer": 16.5, "total": 35.5 },
+        "60_65":   { "employee": 13, "employer": 13,   "total": 26 },
+        "65_70":   { "employee": 7.5, "employer": 9,   "total": 16.5 },
+        "70_plus": { "employee": 5,  "employer": 7.5,  "total": 12.5 }
+      },
+      "partial_wage": {
+        "le55":    { "low_total": 17,   "taper_total": 0.6,   "taper_employee": 0.6 },
+        "55_60":   { "low_total": 16.5, "taper_total": 0.57,  "taper_employee": 0.57 },
+        "60_65":   { "low_total": 13,   "taper_total": 0.39,  "taper_employee": 0.39 },
+        "65_70":   { "low_total": 9,    "taper_total": 0.225, "taper_employee": 0.225 },
+        "70_plus": { "low_total": 7.5,  "taper_total": 0.15,  "taper_employee": 0.15 }
+      },
+      "max_on_ow": {
+        "le55":    { "total": 2960, "employee": 1600 },
+        "55_60":   { "total": 2840, "employee": 1520 },
+        "60_65":   { "total": 2080, "employee": 1040 },
+        "65_70":   { "total": 1320, "employee": 600 },
+        "70_plus": { "total": 1000, "employee": 400 }
+      },
+      "allocation_ratios": {
+        "le35":    { "account": "SA", "oa": 0.6217, "sa_ra": 0.1621, "ma": 0.2162 },
+        "35_45":   { "account": "SA", "oa": 0.5677, "sa_ra": 0.1891, "ma": 0.2432 },
+        "45_50":   { "account": "SA", "oa": 0.5136, "sa_ra": 0.2162, "ma": 0.2702 },
+        "50_55":   { "account": "SA", "oa": 0.4055, "sa_ra": 0.3108, "ma": 0.2837 },
+        "55_60":   { "account": "RA", "oa": 0.3382, "sa_ra": 0.3661, "ma": 0.2957 },
+        "60_65":   { "account": "RA", "oa": 0.1347, "sa_ra": 0.4615, "ma": 0.4038 },
+        "65_70":   { "account": "RA", "oa": 0.0607, "sa_ra": 0.303,  "ma": 0.6363 },
+        "70_plus": { "account": "RA", "oa": 0.08,   "sa_ra": 0.08,   "ma": 0.84 }
+      },
+      "pr_graduated": {
+        "gg_year1": {
+          "le55":    { "employee": 5, "employer": 4,   "total": 9 },
+          "55_60":   { "employee": 5, "employer": 4,   "total": 9 },
+          "60_65":   { "employee": 5, "employer": 3.5, "total": 8.5 },
+          "65_plus": { "employee": 5, "employer": 3.5, "total": 8.5 }
+        },
+        "gg_year2": {
+          "le55":    { "employee": 15,   "employer": 9,   "total": 24 },
+          "55_60":   { "employee": 12.5, "employer": 6,   "total": 18.5 },
+          "60_65":   { "employee": 7.5,  "employer": 3.5, "total": 11 },
+          "65_plus": { "employee": 5,    "employer": 3.5, "total": 8.5 }
+        },
+        "fg_year1": {
+          "le55":    { "employee": 5, "employer": 17,   "total": 22 },
+          "55_60":   { "employee": 5, "employer": 16.5, "total": 21.5 },
+          "60_65":   { "employee": 5, "employer": 13,   "total": 18 },
+          "65_70":   { "employee": 5, "employer": 9,    "total": 14 },
+          "70_plus": { "employee": 5, "employer": 7.5,  "total": 12.5 }
+        },
+        "fg_year2": {
+          "le55":    { "employee": 15,   "employer": 17,   "total": 32 },
+          "55_60":   { "employee": 12.5, "employer": 16.5, "total": 29 },
+          "60_65":   { "employee": 7.5,  "employer": 13,   "total": 20.5 },
+          "65_70":   { "employee": 5,    "employer": 9,    "total": 14 },
+          "70_plus": { "employee": 5,    "employer": 7.5,  "total": 12.5 }
+        }
+      },
+      "retirement_sums": {
+        "brs": { "amount": 114100 },
+        "frs": { "amount": 228200 },
+        "ers": { "amount": 456400 },
+        "source": "retirement_sums",
+        "note": "For members turning 55 in 2027. CPF LIFE payout estimates for the 2027 cohort are not published as of 2026-08-20 and are therefore omitted."
+      }
+    }
+  },
+
+  "tax": {
+    "_note": "IRAS figures, not CPF Board figures. They are here because the tax relief on a CPF cash top-up or an SRS contribution cannot be worked out without them, and a worked example that states a tax saving must trace that saving to a primary source like every other number on the site. Resident rates are the table IRAS publishes for YA 2024 onwards; the reliefs are as they stand for YA 2026.",
+    "assessment_year": 2026,
+
+    "resident_rates": {
+      "source": "iras_income_tax_rates",
+      "applies_from_ya": 2024,
+      "_note": "Chargeable income bands. rate is the marginal rate on the band; tax_on_band is IRAS's published tax for that band; cumulative_tax is IRAS's published gross tax payable at the TOP of the band. All three are checked against each other in cpfdata.py.",
+      "bands": [
+        { "from": 0, "to": 20000, "rate": 0, "tax_on_band": 0, "cumulative_tax": 0 },
+        { "from": 20000, "to": 30000, "rate": 2, "tax_on_band": 200, "cumulative_tax": 200 },
+        { "from": 30000, "to": 40000, "rate": 3.5, "tax_on_band": 350, "cumulative_tax": 550 },
+        { "from": 40000, "to": 80000, "rate": 7, "tax_on_band": 2800, "cumulative_tax": 3350 },
+        { "from": 80000, "to": 120000, "rate": 11.5, "tax_on_band": 4600, "cumulative_tax": 7950 },
+        { "from": 120000, "to": 160000, "rate": 15, "tax_on_band": 6000, "cumulative_tax": 13950 },
+        { "from": 160000, "to": 200000, "rate": 18, "tax_on_band": 7200, "cumulative_tax": 21150 },
+        { "from": 200000, "to": 240000, "rate": 19, "tax_on_band": 7600, "cumulative_tax": 28750 },
+        { "from": 240000, "to": 280000, "rate": 19.5, "tax_on_band": 7800, "cumulative_tax": 36550 },
+        { "from": 280000, "to": 320000, "rate": 20, "tax_on_band": 8000, "cumulative_tax": 44550 },
+        { "from": 320000, "to": 500000, "rate": 22, "tax_on_band": 39600, "cumulative_tax": 84150 },
+        { "from": 500000, "to": 1000000, "rate": 23, "tax_on_band": 115000, "cumulative_tax": 199150 },
+        { "from": 1000000, "to": null, "rate": 24, "tax_on_band": null, "cumulative_tax": null }
+      ]
+    },
+
+    "reliefs": {
+      "source": "iras_cpf_cash_topup_relief",
+      "personal_relief_cap": 80000,
+      "cpf_cash_topup": {
+        "self_max": 8000,
+        "family_max": 8000,
+        "combined_max": 16000,
+        "dependant_income_threshold": 8000,
+        "dependant_income_threshold_from_ya": 2025,
+        "ra_topup_limit": "frs",
+        "ma_topup_limit": "bhs",
+        "mrss_excluded_from_ya": 2026,
+        "mmss_excluded_from_ya": 2027,
+        "_note": "Relief is for CASH top-ups only \u2014 an OA-to-SA transfer earns none. From YA 2026 (top-ups made from 1 Jan 2025) a top-up that attracts a Matched Retirement Savings Scheme grant no longer qualifies for relief; the same applies from YA 2027 to MediSave top-ups that attract a Matched MediSave Scheme grant."
+      }
+    },
+
+    "srs": {
+      "source": "iras_srs_contributions",
+      "withdrawal_source": "iras_srs_withdrawals",
+      "cap_citizen_pr": 15300,
+      "cap_foreigner": 35700,
+      "rate_citizen_pr": 15,
+      "rate_foreigner": 35,
+      "income_base": 102000,
+      "statutory_retirement_age": 63,
+      "statutory_retirement_age_from": "2022-07-01",
+      "withdrawal_period_years": 10,
+      "taxable_share_pct": 50,
+      "early_withdrawal_penalty_pct": 5,
+      "terminal_illness_exemption": 400000,
+      "_note": "The caps are the contribution rate applied to the same absolute income base as the CPF Annual Limit ($102,000), which is why cpfdata.py checks them against annual_ceiling. The prescribed retirement age is the statutory retirement age prevailing when the member made their FIRST contribution; 63 has applied since 1 Jul 2022."
+    }
+  },
+
+  "retirement_sums_history": {
+    "_note": "BRS by year of 55th birthday, transcribed from CPF Board. FRS = 2 x BRS and ERS = ers_multiple x BRS are DERIVED in cpfdata.py and never written here. BRS and FRS lock at the figure for the year the member turned 55; the ERS does not \u2014 it is the ceiling in force during that calendar year for everyone aged 55 and above.",
+    "source": "retirement_sums_brs_history",
+    "ers_source": "ers_rule",
+    "ers_multiple_change": { "before": 3, "from": 4, "effective_year": 2025, "effective": "1 January 2025" },
+    "brs": {
+      "2017":  83000,
+      "2018":  85500,
+      "2019":  88000,
+      "2020":  90500,
+      "2021":  93000,
+      "2022":  96000,
+      "2023":  99400,
+      "2024": 102900,
+      "2025": 106500,
+      "2026": 110200,
+      "2027": 114100
+    }
+  },
+
+  "minimum_sum_series": {
+    "_note": "The single figure a member had to set aside at 55, from 1995 to today. Called the Minimum Sum until it was renamed the Retirement Sum in 2016; the amounts form one unbroken series, which is why CPF Board publishes them in one column. Keyed by the date the member's 55th birthday falls on or after. cpfdata.py checks every 1 January entry against 2 x the BRS for that year, transcribed from a different CPF document.",
+    "source": "frs_minimum_sum_series",
+    "renamed": {
+      "year": 2016,
+      "from": "Minimum Sum",
+      "to": "Retirement Sum",
+      "series_name_after": "Full Retirement Sum",
+      "source": "retirement_sums",
+      "quote": "You might have heard about the term 'minimum sum', but do you know it has been renamed to the 'retirement sum' in 2016?"
+    },
+    "revision_date_change": {
+      "was": "1 July",
+      "now": "1 January",
+      "last_july_cohort": "2015-07-01",
+      "first_january_cohort": "2017-01-01"
+    },
+    "amounts": {
+      "1995-07-01":  40000,
+      "1996-07-01":  45000,
+      "1997-07-01":  50000,
+      "1998-07-01":  55000,
+      "1999-07-01":  60000,
+      "2000-07-01":  65000,
+      "2001-07-01":  70000,
+      "2002-07-01":  75000,
+      "2003-07-01":  80000,
+      "2004-07-01":  84500,
+      "2005-07-01":  90000,
+      "2006-07-01":  94600,
+      "2007-07-01":  99600,
+      "2008-07-01": 106000,
+      "2009-07-01": 117000,
+      "2010-07-01": 123000,
+      "2011-07-01": 131000,
+      "2012-07-01": 139000,
+      "2013-07-01": 148000,
+      "2014-07-01": 155000,
+      "2015-07-01": 161000,
+      "2017-01-01": 166000,
+      "2018-01-01": 171000,
+      "2019-01-01": 176000,
+      "2020-01-01": 181000,
+      "2021-01-01": 186000,
+      "2022-01-01": 192000,
+      "2023-01-01": 198800,
+      "2024-01-01": 205800,
+      "2025-01-01": 213000,
+      "2026-01-01": 220400,
+      "2027-01-01": 228200
+    }
+  },
+
+  "medisave_minimum_sum": {
+    "_note": "The second thing people mean by 'CPF minimum sum'. Both changes took effect 1 January 2016, the same year the retirement Minimum Sum was renamed, which is why the three get muddled.",
+    "source": "medisave_changes_2016",
+    "mms_removed": {
+      "what": "Medisave Minimum Sum",
+      "action": "removed",
+      "effective": "1 January 2016",
+      "quote": "To simplify the rules on the Medisave scheme, we will remove the Medisave Minimum Sum (MMS) from 1 January 2016."
+    },
+    "mcc_renamed": {
+      "what": "Medisave Contribution Ceiling",
+      "action": "renamed",
+      "became": "Basic Healthcare Sum",
+      "effective": "1 January 2016",
+      "opening_amount": 49800,
+      "quote": "From 1 January 2016, the Medisave Contribution Ceiling (MCC) will be renamed as the Basic Healthcare Sum (BHS)."
+    },
+    "bhs_fixed_at_age": 65
+  },
+
+  "current_year": "2026",
+  "next_year": "2027"
+}

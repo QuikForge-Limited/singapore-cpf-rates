@@ -1,0 +1,16 @@
+year,effective_from,age_band,age_band_label,employee_pct_of_wage,employer_pct_of_wage,total_pct_of_wage,ordinary_wage_ceiling_monthly_sgd,annual_ceiling_sgd
+2025,1 January 2025,le55,55 & below,20,17,37,7400,102000
+2025,1 January 2025,55_60,Above 55 to 60,17,15.5,32.5,7400,102000
+2025,1 January 2025,60_65,Above 60 to 65,11.5,12,23.5,7400,102000
+2025,1 January 2025,65_70,Above 65 to 70,7.5,9,16.5,7400,102000
+2025,1 January 2025,70_plus,Above 70,5,7.5,12.5,7400,102000
+2026,1 January 2026,le55,55 & below,20,17,37,8000,102000
+2026,1 January 2026,55_60,Above 55 to 60,18,16,34,8000,102000
+2026,1 January 2026,60_65,Above 60 to 65,12.5,12.5,25,8000,102000
+2026,1 January 2026,65_70,Above 65 to 70,7.5,9,16.5,8000,102000
+2026,1 January 2026,70_plus,Above 70,5,7.5,12.5,8000,102000
+2027,1 January 2027,le55,55 & below,20,17,37,8000,102000
+2027,1 January 2027,55_60,Above 55 to 60,19,16.5,35.5,8000,102000
+2027,1 January 2027,60_65,Above 60 to 65,13,13,26,8000,102000
+2027,1 January 2027,65_70,Above 65 to 70,7.5,9,16.5,8000,102000
+2027,1 January 2027,70_plus,Above 70,5,7.5,12.5,8000,102000

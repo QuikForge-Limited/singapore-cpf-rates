@@ -1,0 +1,9 @@
+year,applicable_year,table,age_band,age_band_label,nti_threshold_sgd,low_band_from_sgd,low_band_to_sgd,phase_in_from_sgd,phase_in_to_sgd,full_rate_from_sgd,low_rate_pct,full_rate_pct,max_annual_sgd,phase_base_sgd,phase_slope
+2026,2026,non_pensioners,below_35,Below 35,6000,6000,12000,12000,18000,18000,4,8,7680,480,0.16
+2026,2026,non_pensioners,35_45,35 to below 45,6000,6000,12000,12000,18000,18000,4.5,9,8640,540,0.18
+2026,2026,non_pensioners,45_50,45 to below 50,6000,6000,12000,12000,18000,18000,5,10,9600,600,0.2
+2026,2026,non_pensioners,50_plus,50 and above,6000,6000,12000,12000,18000,18000,5.25,10.5,10080,630,0.21
+2026,2026,pensioners,below_35,Below 35,6000,6000,12000,12000,18000,18000,4,6,5760,480,0.1
+2026,2026,pensioners,35_45,35 to below 45,6000,6000,12000,12000,18000,18000,4.5,6,5760,540,0.09
+2026,2026,pensioners,45_50,45 to below 50,6000,6000,12000,12000,18000,18000,5,6,5760,600,0.08
+2026,2026,pensioners,50_plus,50 and above,6000,6000,12000,12000,18000,18000,5.25,6,5760,630,0.075
