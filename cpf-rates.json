@@ -384,13 +384,13 @@
       "rate_citizen_pr": 15,
       "rate_foreigner": 35,
       "income_base": 102000,
-      "statutory_retirement_age": 63,
-      "statutory_retirement_age_from": "2022-07-01",
+      "statutory_retirement_age": 64,
+      "statutory_retirement_age_from": "2026-07-01",
       "withdrawal_period_years": 10,
       "taxable_share_pct": 50,
       "early_withdrawal_penalty_pct": 5,
       "terminal_illness_exemption": 400000,
-      "_note": "The caps are the contribution rate applied to the same absolute income base as the CPF Annual Limit ($102,000), which is why cpfdata.py checks them against annual_ceiling. The prescribed retirement age is the statutory retirement age prevailing when the member made their FIRST contribution; 63 has applied since 1 Jul 2022."
+      "_note": "The caps are the contribution rate applied to the same absolute income base as the annual salary ceiling ($102,000; not the CPF Annual Limit, which is $37,740 in 2026 per cpf.gov.sg), which is why cpfdata.py checks them against annual_ceiling. The prescribed retirement age is the statutory retirement age prevailing when the member made their FIRST contribution, and later changes do not affect it (IRAS). statutory_retirement_age is the age for a first contribution made on or after statutory_retirement_age_from: 64 from 1 Jul 2026 (IRAS, Tax on SRS withdrawals). Members who first contributed earlier keep the age that applied then (IRAS gives 62 as one such age)."
     }
   },
 

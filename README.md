@@ -5,7 +5,7 @@ interest rate that applies in Singapore for **2025/2026/2027**, as CSV and JSON,
 the **1995–2027 Retirement Sum series** in one column.
 
 CPF Board publishes these figures across a dozen PDFs and web tables, in different
-shapes, with the PR graduated rates split over five separate tables. Nobody
+shapes, with the PR graduated rates split over four separate tables. Nobody
 publishes them as data. So payroll code, spreadsheets and articles hand-type them —
 and hand-typed rates go stale silently. This repository exists to be the copy you
 can `fetch`, `pd.read_csv`, or diff against next year's.
@@ -63,9 +63,11 @@ data.years["2026"].contribution["55_60"];   // { employee: 18, employer: 16, tot
    the way CPF Board computes it: MediSave first, then the Special or Retirement
    Account, with the Ordinary Account taking the remainder. Computing all three
    independently leaves a rounding artefact that does not sum to the band total.
-2. **A PR's rate depends on the scheme as well as the year.** Graduated/graduated
-   is the default; full/graduated applies where employer and employee have jointly
-   applied. `pr-graduated-rates.csv` carries all four tables.
+2. **A PR's rate depends on the scheme as well as the year.** In the first two
+   years of PR status, graduated employer / graduated employee (G/G) is the
+   default. Full employer / graduated employee (F/G) applies only after CPF Board
+   approves a joint application by the employer and the employee; full rates for
+   both are the citizen table. `pr-graduated-rates.csv` carries the four PR tables.
 3. **"The CPF minimum sum" is three different numbers** — the Retirement Sum
    (renamed from the Minimum Sum in 2016), the Basic Healthcare Sum, and the
    removed MediSave Minimum Sum. The series here is the first.
@@ -85,6 +87,25 @@ open an issue — with the source — and it will be corrected here and on
 [cpfcalculatorsg.com](https://cpfcalculatorsg.com) together.
 
 **Not financial advice.** These are published rates, not a recommendation.
+
+## Corrections
+
+**2026-10-17.** Every value in `cpf-rates.json` was re-proven against CPF Board
+and IRAS primary sources: each one is bound to a sourced claim, and the CPF PDF
+tables were re-read by a second, independent extractor and compared value by value
+(377 values, 0 differences). Three errors in the 2026-08-21 release are corrected:
+
+- `tax.srs.statutory_retirement_age` was **63** (from 1 July 2022). IRAS: SRS
+  withdrawals are penalty-free from the statutory retirement age prevailing at the
+  member's first contribution, **64 effective from 1 July 2026**. Members who first
+  contributed earlier keep the age that applied then.
+- `tax.srs._note` called $102,000 the "CPF Annual Limit". $102,000 is the annual
+  salary ceiling, which is also the SRS income base; the CPF Annual Limit is
+  $37,740 in 2026.
+- In `pr-graduated-rates.csv`, `scheme_label` for `fg_year1` and `fg_year2` read
+  "Full employee / graduated employer". CPF Board's Tables 4 and 5 are **Full
+  Employer & Graduated Employee** rates; the percentages were right, the label was
+  reversed.
 
 ## Licence
 
